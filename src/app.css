@@ -1,0 +1,111 @@
+/* Pulse web — design system (R0)
+   Spec §11: CSS variables, glass mixin, typography scale.
+   Tokyo Night palette, square edges (--r: 0), glassmorphism, dark only.
+   ──────────────────────────────────────────────────────────── */
+
+:root {
+  /* Background scale (spec §11.1) */
+  --bg:         #1a1b26;
+  --surface:    #1f2335;
+  --surface-2:  #24283b;
+  --surface-3:  #2a2f45;
+
+  /* Borders */
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Text */
+  --text:        #c0caf5;
+  --text-muted:  #9aa5ce;
+  --text-dim:    #565f89;
+
+  /* Brand (Tokyo Night) */
+  --primary:     #bb9af7;
+  --primary-2:   #9d7cd8;
+  --on-primary:  #1a1525;
+  --accent:      #7aa2f7;
+
+  /* Status */
+  --green:  #9ece6a;
+  --yellow: #e0af68;
+  --red:    #f7768e;
+  --danger: #f7768e;
+  --cyan:   #7dcfff;
+
+  /* Radius — square only (spec §11.1) */
+  --r: 0;
+
+  /* Spacing (spec §11.1) */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 48px;
+
+  /* Typography (spec §11.2) */
+  --font: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", monospace;
+
+  /* Motion (consistent with pulse-landing R252) */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 220ms;
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+img, svg, video { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: var(--accent); text-decoration: none; transition: color var(--dur) var(--ease); }
+a:hover { color: var(--primary); }
+
+/* Focus ring (keyboard only) */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ── Typography scale (spec §11.2) ────────────────────────── */
+.d-display-1 { font-size: 32px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; }
+.d-h1        { font-size: 24px; font-weight: 700; letter-spacing: -0.02em;  line-height: 1.2; }
+.d-h2        { font-size: 20px; font-weight: 600; letter-spacing: -0.01em;  line-height: 1.25; }
+.d-h3        { font-size: 16px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.3; }
+.d-body      { font-size: 15px; line-height: 1.6; }
+.d-body-sm   { font-size: 13px; line-height: 1.5; }
+.d-caption   {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+/* ── Glass mixin (spec §11.4) ─────────────────────────────── */
+.glass {
+  background: rgba(31, 35, 53, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
