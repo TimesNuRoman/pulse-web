@@ -83,7 +83,7 @@
     <h2 class="d-h2">Avatars</h2>
     <div class="row" style="align-items: center; gap: var(--sp-3);">
       <Avatar name="Anya" size="sm" />
-      <Avatar name="Roman" size="md" />
+      <Avatar name="Mira" size="md" />
       <Avatar name="Pulse" size="lg" />
       <Avatar name="x" size="md" tint="accent" />
       <Avatar name="" size="md" tint="cyan" />
